@@ -27,10 +27,13 @@ function checkAuthStatus() {
         }
     } else {
         // Redirect to login for protected pages
-        const currentPage = window.location.pathname.split('/').pop();
-        const publicPages = ['login.html', 'register.html', ''];
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const publicPages = ['login.html', 'register.html', 'index.html', ''];
         
-        if (!publicPages.includes(currentPage)) {
+        // Also check if we're on root path
+        const isRootPath = window.location.pathname === '/' || window.location.pathname === '';
+        
+        if (!publicPages.includes(currentPage) && !isRootPath) {
             redirectToLogin();
         } else {
             document.body.classList.add('auth-checked');
