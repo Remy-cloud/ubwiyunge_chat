@@ -242,8 +242,12 @@
         </div>
         
         <div class="guest-access">
-            <p><strong>Browse without account</strong></p>
-            <p style="font-size: var(--text-sm); color: var(--gray-600); margin: var(--space-2) 0;">View recent cases and public information</p>
+            <p><strong>Demo Accounts</strong></p>
+            <p style="font-size: var(--text-sm); color: var(--gray-600); margin: var(--space-2) 0;">
+                <strong>Citizen:</strong> citizen@demo.com<br>
+                <strong>Leader:</strong> leader@demo.com<br>
+                <em>(any password works)</em>
+            </p>
             <a href="index.html" class="guest-btn">
                 <i class="fas fa-eye"></i>
                 Continue as Guest
@@ -256,8 +260,50 @@
     <script>
         // Login form functionality
         document.addEventListener('DOMContentLoaded', function() {
+            initializeDemoUsers();
             setupLoginForm();
         });
+
+        // Initialize demo users for testing
+        function initializeDemoUsers() {
+            const existingUsers = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+            
+            // Only add demo users if none exist
+            if (existingUsers.length === 0) {
+                const demoUsers = [
+                    {
+                        id: 'user_demo_citizen',
+                        firstName: 'Jean',
+                        lastName: 'Uwimana',
+                        email: 'citizen@demo.com',
+                        phone: '+250 788 123 456',
+                        district: 'Gasabo',
+                        sector: 'Kimironko',
+                        address: 'Kimironko, Gasabo District, Rwanda',
+                        avatar: 'assets/images/default-avatar.svg',
+                        role: 'citizen',
+                        createdDate: new Date().toISOString()
+                    },
+                    {
+                        id: 'user_demo_leader',
+                        firstName: 'Marie',
+                        lastName: 'Mukamana',
+                        email: 'leader@demo.com',
+                        phone: '+250 788 654 321',
+                        district: 'Gasabo',
+                        sector: 'Kacyiru',
+                        address: 'Kacyiru, Gasabo District, Rwanda',
+                        avatar: 'assets/images/default-avatar.svg',
+                        role: 'leader',
+                        position: 'Executive Secretary',
+                        department: 'Sector Office',
+                        officeAddress: 'Kacyiru Sector Office',
+                        createdDate: new Date().toISOString()
+                    }
+                ];
+                localStorage.setItem('registeredUsers', JSON.stringify(demoUsers));
+            }
+        }
 
         function setupLoginForm() {
             // Handle tab switching between Citizen and Leader
