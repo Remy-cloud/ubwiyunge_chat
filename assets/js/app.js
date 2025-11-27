@@ -6,14 +6,86 @@
 class UbwiyungeApp {
     constructor() {
         this.currentUser = null;
-        this.apiBaseUrl = 'http://localhost:3000';
+        this.apiBaseUrl = window.location.origin;
         this.init();
     }
 
     init() {
+        this.initializeDemoData(); // Initialize demo data first
         this.setupEventListeners();
         this.loadUserSession();
         this.loadDashboardData();
+    }
+
+    // Initialize demo data for the platform
+    initializeDemoData() {
+        // Initialize demo reports if none exist
+        const existingReports = localStorage.getItem('ubwiyunge_reports');
+        if (!existingReports || JSON.parse(existingReports).length === 0) {
+            const demoReports = [
+                {
+                    id: 'report_demo_1',
+                    title: 'Road Repair Needed on KN 15 Ave',
+                    category: 'infrastructure',
+                    description: 'There are multiple potholes on KN 15 Ave near Nakumatt that need urgent repair. The road has become dangerous for both vehicles and pedestrians, especially during rainy season.',
+                    district: 'Gasabo',
+                    sector: 'Kacyiru',
+                    specificLocation: 'KN 15 Ave, near Nakumatt',
+                    status: 'pending',
+                    createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+                    reporterName: 'Jean Uwimana'
+                },
+                {
+                    id: 'report_demo_2',
+                    title: 'Street Lights Not Working',
+                    category: 'infrastructure',
+                    description: 'Multiple street lights along KG 203 St are not functioning for the past week. This creates safety concerns for residents walking at night.',
+                    district: 'Kicukiro',
+                    sector: 'Gatenga',
+                    specificLocation: 'KG 203 St, Gatenga Commercial Center',
+                    status: 'in-progress',
+                    createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+                    reporterName: 'Alice Mukamana'
+                },
+                {
+                    id: 'report_demo_3',
+                    title: 'Water Supply Interruption',
+                    category: 'infrastructure',
+                    description: 'Residents in Kimironko sector have been experiencing frequent water supply interruptions for the past two weeks. This is affecting daily life and businesses.',
+                    district: 'Gasabo',
+                    sector: 'Kimironko',
+                    specificLocation: 'Kimironko Market Area',
+                    status: 'pending',
+                    createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
+                    reporterName: 'Patrick Habimana'
+                },
+                {
+                    id: 'report_demo_4',
+                    title: 'Garbage Collection Delayed',
+                    category: 'environment',
+                    description: 'Garbage has not been collected in our area for over a week. The situation is becoming a health hazard.',
+                    district: 'Nyarugenge',
+                    sector: 'Nyamirambo',
+                    specificLocation: 'Near Nyamirambo Stadium',
+                    status: 'resolved',
+                    createdAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
+                    reporterName: 'Marie Claire'
+                },
+                {
+                    id: 'report_demo_5',
+                    title: 'School Building Needs Repair',
+                    category: 'education',
+                    description: 'The roof of the primary school building is leaking during rain, making it difficult for students to learn.',
+                    district: 'Gasabo',
+                    sector: 'Remera',
+                    specificLocation: 'GS Remera Primary School',
+                    status: 'in-progress',
+                    createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+                    reporterName: 'Emmanuel Niyonzima'
+                }
+            ];
+            localStorage.setItem('ubwiyunge_reports', JSON.stringify(demoReports));
+        }
     }
 
     setupEventListeners() {
