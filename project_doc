@@ -1,0 +1,597 @@
+
+FORMATIVE ASSIGNMENT
+[ System Project Proposal Title ]
+                                  Ubwiyunge community feedback Platform
+
+	•	Description of the concept of their Mission; 
+
+Our Mission 
+"To empower Rwandan citizens with direct digital access to their local leaders, fostering transparent governance and accountable public service delivery that strengthens democratic participation at all administrative levels." 
+
+Relevance to Rwanda's Governance Sector & Regional Integration 
+
+	•	Strengthening Local Democracy: Enhances Rwanda's decentralization policy by empowering citizens to actively engage with Cell, Sector, and District leaders 
+	•	Improves Accountability: Creates transparent tracking of issues and government responses, supporting Rwanda's high governance rankings Advances 
+	•	Digital Governance: Complements e-governance initiatives like Irembo, supporting Rwanda's Digital Transformation Strategy
+	•	Problem statement: 
+Background 
+Rwanda's remarkable transformation since 1994 has been built on strong governance principles and citizen participation. The country's decentralization policy, implemented to bring government closer to the people, established a four-tier administrative structure from Provinces down to Cells, with local leaders responsible for addressing community needs. However, as Rwanda advances its digital transformation agenda and citizens become increasingly connected through mobile technology, traditional communication methods between citizens and their local leaders have not kept pace. While Rwanda excels in national-level e-governance through platforms like Irembo, a significant gap exists in facilitating direct communication between citizens and their immediate local leaders who handle day-to-day community issues.
+The Problem Statement:
+
+Rwanda's citizens lack direct digital access to local leaders, with 70% of community issues never reaching appropriate authorities despite high mobile penetration, creating unresolved problems and effective public service delivery (NISR, 2023; World Bank Digital Development Report, 2024).
+
+References: 
+	•	National Institute of Statistics Rwanda (NISR). (2023). Rwanda Digital Survey Report
+	•	World Bank. (2024). Digital Development Report: Building Trust in Digital Government Services
+
+Software Development Model: 
+Agile Development with Scrum Framework 
+	•	Methodology: Iterative development with 2-week sprints 
+	•	Rationale: Enables continuous stakeholder feedback from citizens and leaders, accommodates changing governance requirements, and reduces project risks through early delivery
+	•	Framework: Scrum ceremonies including sprint planning, daily standups, sprint reviews, and retrospectives 
+	•	Timeline: 4 phases over weeks beyond week 12, from foundation to deployment
+
+
+The Hypothesis of Their Solution 
+
+Core Hypothesis: 
+"By deploying a mobile-first digital platform connecting citizens with local leaders, we will achieve a 60% citizen adoption rate and 50% reduction in issue resolution time within 12 months of national launch, measurably improving governance transparency and citizen satisfaction by 40% across Rwanda's 30 districts."
+
+
+
+
+  Software Requirements Specification (SRS) Template
+
+Title :Ubwiyunge community feedback Platform
+Prepared by Intwali Remy
+ALU Student
+22,September, 2025
+
+Table of Contents....................................................................................................................
+ Revision History............................................................................................................................. 
+1.   Introduction.............................................................................................................................
+1.1   Purpose................................................................................................................................. 
+1.2   Document Conventions.......................................................................................................... 
+1.3   Intended Audience and Reading Suggestions........................................................................
+1.4   Product Scope........................................................................................................................ 
+1.5   References............................................................................................................................. 
+2.   Overall Description................................................................................................................. 
+2.1   Product Perspective................................................................................................................ 
+2.2   Product Functions.................................................................................................................. 
+2.3   User Classes and Characteristics...........................................................................................
+2.4   Operating Environment.......................................................................................................... 
+2.5   Design and Implementation Constraints..................................................................................
+2.6   User Documentation............................................................................................................... 
+2.7   Assumptions and Dependencies.............................................................................................
+3.   External Interface Requirements........................................................................................... 
+3.1   User Interfaces....................................................................................................................... 
+3.2   Hardware Interfaces............................................................................................................... 
+3.3   Software Interfaces................................................................................................................. 
+3.4   Communications Interfaces..................................................................................................... 
+4.   System Features....................................................................................................................... 
+4.1   System Feature 1.................................................................................................................... 
+4.2   System Feature 2 (and so on).................................................................................................
+5.   Other Nonfunctional Requirements......................................................................................
+5.1   Performance Requirements..................................................................................................... 
+5.2   Safety Requirements.............................................................................................................. 
+5.3   Security Requirements............................................................................................................ 
+5.4   Software Quality Attributes.................................................................................................... 
+6.     SDLC model.................................................................................................. 
+7.     Appendix……………………………………………………………………
+
+
+
+
+ 
+ 
+
+1. 	Introduction
+1.1 	Purpose
+This Software Requirements Specification (SRS) document specifies the requirements for Ubwiyunge (Voice of the People), a web-based community feedback platform designed to facilitate communication between Rwandan citizens and their local government leaders. This SRS covers the complete system, including citizen issue reporting, leader response management, and community engagement features.
+1.2 	Document Conventions
+The following conventions are used throughout this document:
+	•	Bold text indicates system components, user interface elements, or important terms 
+	•	Italic text represents user roles or external systems 
+	•	Code formatting denotes technical specifications, APIs, or data formats. Requirements are numbered hierarchically (e.g., REQ-1.1, REQ-1.2)
+	•	Priority levels: High (Critical), Medium (Important), Low (Nice to have) 
+	•	All requirements inherit the priority of their parent section unless explicitly stated otherwise
+
+1.3 	Intended Audience and Reading Suggestions
+This document is intended for: 
+	•	Developers: Focus on Sections 3 (External Interface Requirements) and technical specifications 
+	•	Project Managers: Read Sections 1-2 for scope and overview, Section 4 for functional requirements 
+	•	Testers: Review all sections, with emphasis on functional requirements and user interface specifications 
+	•	Users/Stakeholders: Focus on Sections 1-2 and user interface descriptions 
+	•	System Administrators: Pay attention to the operating environment and implementation constraints 
+Reading Sequence: Begin with Section 1 (Introduction) and Section 2 (Overall Description), then proceed to the sections most relevant to your role.
+1.4 	Product Scope
+Ubwiyunge is a web-based platform that bridges the communication gap between Rwandan citizens and their local government leaders. The software enables citizens to: 
+	•	Report community issues and problems
+	•	Contact appropriate local leaders directly 
+	•	Track progress on submitted issues 
+	•	Engage with community-wide concerns 
+Business Objectives: 
+	•	Improve governance transparency and accountability 
+	•	Enhance citizen participation in local government 
+	•	Streamline communication between citizens and leaders
+	•	Create data-driven insights for better policy making 
+	•	Support Rwanda's digital transformation and good governance initiatives
+The platform aligns with Rwanda's Vision 2050 goals of effective governance and citizen empowerment.
+2. 	Overall Description
+2.1 	Product Perspective
+Ubwiyunge is a new, self-contained web application designed to complement Rwanda's existing e-governance infrastructure. The system will integrate with: 
+	•	Rwanda's administrative structure (Cell → Sector → District → Province) 
+	•	Existing government communication channels 
+	•	Mobile payment systems (future integration with MoMoPay/Airtel Money) 
+	•	National ID system (future integration with Irembo services)
+System Context Diagram:
+[Citizens] ↔ [Web App] ↔ [Database]
+     ↕           ↕
+[Leaders] ↔ [Admin Panel] ↔ [File Storage]
+     ↕           ↕
+[SMS Gateway] ↔ [Email Service] ↔ [Notification System]
+
+2.2 	Product Functions
+The major functions of Ubwiyunge include: 
+Core Functions: 
+	•	Issue submission and categorization system 
+	•	Leader directory and contact management 
+	•	Two-way communication platform (citizens ↔ leaders) 
+	•	Issue tracking and status management 
+	•	Community engagement (voting, commenting, following) 
+Administrative Functions: 
+	•	User authentication and profile management 
+	•	Leader verification and onboarding 
+	•	Content moderation and system administration 
+	•	Analytics and reporting dashboard 
+	•	Multi-language support (Kinyarwanda/English) 
+Communication Functions: 
+	•	Real-time notifications 
+	•	Direct messaging between citizens and leaders 
+	•	Public status updates and announcements 
+	•	SMS integration for feature phone users
+2.3 	User Classes and Characteristics
+Primary User Classes: 
+Citizens (High Priority) 
+	•	Frequency: Daily to weekly usage 
+	•	Technical expertise: Basic to intermediate 
+	•	Functions used: Issue reporting, leader contact, progress tracking 
+	•	Characteristics: Rwanda residents, mobile-first users, multilingual needs 
+Community Leaders (High Priority) 
+	•	Frequency: Daily usage during work hours 
+	•	Technical expertise: Intermediate 
+	•	Functions used: Issue management, citizen communication, status updates 
+	•	Characteristics: Elected/appointed officials, accountability-focused, time-constrained 
+System Administrators (Medium Priority) 
+	•	Frequency: Regular maintenance access 
+	•	Technical expertise: Advanced 
+	•	Functions used: User management, content moderation, system configuration 
+	•	Characteristics: Technical staff, security-conscious Anonymous 
+Visitors (Low Priority) 
+	•	Frequency: Occasional browsing 
+	•	Technical expertise: Basic 
+	•	Functions used: Browse public issues, view leader information 
+	•	Characteristics: Potential users, information seekers
+2.4 	Operating Environment
+
+
+Client-Side Requirements: 
+	•	Web browsers: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+ 
+	•	Mobile devices: iOS 12+, Android 8.0+ 
+	•	Screen resolutions: 320px (mobile) to 1920px (desktop) 
+	•	Internet connectivity: Minimum 2G, optimized for 3G/4G 
+Server-Side Environment: 
+	•	Operating System: Ubuntu 20.04 LTS or CentOS 8+ 
+	•	Web Server: Node.js 16+ with Express framework 
+	•	Database: MongoDB 5.0+ 
+	•	File Storage: AWS S3 or local file system 
+	•	Deployment: Docker containerization support 
+Third-Party Services: 
+	•	Email: SendGrid or AWS SES 
+	•	SMS: Twilio or local SMS providers 
+	•	Maps: Google Maps API or OpenStreetMap 
+	•	Image processing: Sharp.js or similar
+2.5 	Design and Implementation Constraints
+Technical Constraints: 
+	•	Must be responsive and mobile-first design 
+	•	Maximum page load time: 3 seconds on 3G connection 
+	•	Support for offline functionality (basic browsing) 
+	•	Database queries must handle 10,000+ concurrent users 
+	•	File uploads limited to 10MB per image 
+Regulatory Constraints: 
+	•	Compliance with Rwanda Data Protection Law 
+	•	Government accessibility standards 
+	•	Content moderation for public safety 
+	•	User verification requirements for sensitive reports 
+Business Constraints: 
+	•	Development timeline: 6 months for MVP 
+	•	Budget constraints: Open-source technologies preferred 
+	•	Language requirements: Kinyarwanda and English 
+	•	Integration with existing government systems preferred 
+Security Constraints: 
+	•	HTTPS encryption for all communications 
+	•	Two-factor authentication for leader accounts 
+	•	Data backup and disaster recovery procedures 
+	•	Regular security audits and penetration testing
+2.6 	User Documentation
+The following documentation will be delivered: 
+End-User Documentation: 
+	•	User manual (web-based help system) 
+	•	Video tutorials for key features 
+	•	FAQ section with common issues 
+	•	Quick start guide for new users 
+	•	Mobile app usage guide 
+Administrative Documentation: 
+	•	System administrator manual 
+	•	Leader onboarding guide 
+	•	Content moderation guidelines 
+	•	Troubleshooting manual 
+	•	API documentation for integrations 
+Delivery Formats: 
+	•	Online help system integrated into the application 
+	•	Downloadable PDF manuals 
+	•	Video tutorials hosted on platform 
+	•	Context-sensitive help tooltips
+2.7 	Assumptions and Dependencies
+
+
+Assumptions: 
+	•	Users have basic literacy in Kinyarwanda or English 
+	•	Government leaders will actively participate in the platform 
+	•	Internet penetration will continue to improve in Rwanda 
+	•	Citizens have access to mobile phones with cameras 
+	•	Local government structure remains stable 
+	•	Community leaders have email addresses and phone numbers 
+Dependencies: 
+	•	Reliable internet infrastructure in target deployment areas 
+	•	Government approval and endorsement for leader participation 
+	•	Third-party services (email, SMS, maps) remain available and affordable 
+	•	MongoDB Atlas or equivalent database hosting service Cloud hosting platform (AWS, Google Cloud, or Azure) for scalability 
+	•	Integration APIs from government systems (future dependency) 
+	•	Community feedback and user testing during development phase 
+Risk Factors: 
+	•	Low initial user adoption may affect platform value 
+	•	Limited leader participation could reduce effectiveness 
+	•	Technical infrastructure limitations in rural areas 
+	•	Potential security threats requiring ongoing mitigation 
+	•	Changes in government policies affecting platform operations
+3. 	External Interface Requirements
+3.1 	User Interfaces
+General UI Standards: 
+	•	Design Philosophy: Clean, intuitive, mobile-first responsive design 
+	•	Color Scheme: Rwanda national colors (blue, yellow, green) with high contrast ratios 
+	•	Typography: Arial/Helvetica for English, appropriate fonts for Kinyarwanda 
+	•	Accessibility: WCAG 2.1 AA compliance, screen reader compatible 
+	•	Language Toggle: Prominent switch between Kinyarwanda and English 
+Screen Layout Standards: 
+	•	Header: Logo, navigation menu, user profile, language selector 
+	•	Navigation: Breadcrumb navigation, back buttons, clear menu hierarchy 
+	•	Content Area: Consistent spacing, readable font sizes (minimum 16px) 
+	•	Footer: Contact information, privacy policy, terms of service 
+Key Interface Components: 
+Dashboard Interface 
+	•	Recent issues summary cards Quick action buttons (Submit Issue, Contact Leader) 
+	•	Status indicators with color coding 
+	•	Notification center 
+Issue Submission Form 
+	•	Step-by-step wizard interface 
+	•	Photo upload with preview 
+	•	Location selector with map integration 
+	•	Category dropdown with icons 
+	•	Leader suggestion panel 
+Issue Detail View 
+	•	Timeline of updates and responses 
+	•	Photo gallery with lightbox 
+	•	Leader contact card with direct action buttons 
+	•	Community engagement section (votes, comments) 
+Leader Directory 
+	•	Search and filter interface 
+	•	Contact cards with photos and information 
+	•	Availability status indicators 
+	•	Direct communication buttons (Call, WhatsApp, Email) 
+Error Handling: 
+	•	Friendly error messages in user's preferred language 
+	•	Inline validation with helpful suggestions 
+	•	Graceful degradation for network issues 
+	•	Clear recovery instructions
+3.2 	Hardware Interfaces
+Mobile Device Integration: 
+	•	Camera Access: Native camera integration for issue photo capture 
+	•	GPS Location: Automatic location detection with user permission 
+	•	Touch Interface: Optimized for touch gestures, swipe navigation 
+	•	Phone Integration: Direct dialing capability for leader contacts 
+	•	SMS Integration: Send/receive SMS notifications 
+Desktop Hardware: 
+	•	File Upload: Drag-and-drop file upload functionality 
+	•	Keyboard Navigation: Full keyboard accessibility support 
+	•	Print Support: Printable issue reports and leader contact lists 
+	•	Multiple Monitor: Responsive layout adaptation 
+Network Hardware: 
+	•	Bandwidth Optimization: Progressive image loading, data compression 
+	•	Offline Storage: Browser cache for offline content access 
+	•	Connection Detection: Automatic retry mechanisms for poor connectivity
+3.3 	Software Interfaces
+Database Interface (MongoDB): 
+	•	Connection: MongoDB Driver for Node.js v4.0+ 
+	•	Data Models: Users, Issues, Leaders, Administrative Divisions, Responses 
+	•	Queries: Aggregation pipelines for analytics, full-text search capabilities 
+	•	Backup: Automated daily backups with point-in-time recovery 
+Email Service Interface: 
+	•	Provider: SendGrid API v3 or AWS SES 
+	•	Functions: User registration emails, notification emails, password reset 
+	•	Templates: HTML email templates with multilingual support 
+	•	Delivery: Email delivery status tracking and bounce handling 
+SMS Service Interface: 
+	•	Provider: Twilio API or Rwanda Telecentre Agency SMS gateway 
+	•	Functions: OTP verification, critical notifications, feature phone support 
+	•	Format: SMS message templates with character limits 
+	•	Delivery: Delivery confirmation and error handling 
+File Storage Interface: 
+	•	Service: AWS S3 or compatible object storage 
+	•	File Types: JPEG, PNG, PDF documents 
+	•	Processing: Image compression and thumbnail generation 
+	•	Security: Signed URLs for secure access, virus scanning 
+	•	Authentication Interface: JWT Tokens: JSON Web Tokens for session management 
+	•	Password Hashing: bcrypt for secure password storage 
+	•	Two-Factor: TOTP-based 2FA for leader accounts 
+	•	OAuth Integration: Future Google/Facebook login support 
+Mapping Service Interface: 
+	•	Provider: Google Maps API or OpenStreetMap 
+	•	Functions: Location selection, administrative boundary display 
+	•	Data: Rwanda administrative divisions (Province, District, Sector, Cell) 
+	•	Geocoding: Address to coordinates conversion
+3.4 	Communications Interfaces   
+Web Communications: 
+	•	Protocol: HTTPS/TLS 1.3 for all client-server communication 
+	•	API Format: RESTful JSON APIs with proper HTTP status codes 
+	•	WebSocket: Real-time notifications and chat functionality 
+	•	CORS: Cross-Origin Resource Sharing for API access 
+	•	Rate Limiting: API throttling to prevent abuse 
+Email Communications: 
+	•	SMTP/API: Secure email transmission with encryption 
+	•	Templates: Responsive HTML email templates 
+	•	Localization: Multi-language email content 
+	•	Delivery: Bounce handling and unsubscribe management 
+	•	Security: SPF, DKIM, DMARC configuration 
+SMS Communications: 
+	•	Protocol: HTTP API calls to SMS providers 
+	•	Format: UTF-8 encoded messages with Kinyarwanda support 
+	•	Delivery: Status callbacks and error handling 
+	•	Cost Management: Message queuing and batch processing 
+	•	Security: Message encryption and secure API keys 
+Push Notifications: 
+	•	Web Push: Browser push notifications for real-time updates 
+	•	Service Workers: Offline notification support 
+	•	Personalization: User preference-based notification filtering 
+	•	Delivery: Retry mechanisms for failed deliveries 
+Data Transfer Specifications: 
+	•	Image Upload: Maximum 10MB per file, progressive upload with resumption 
+	•	API Responses: JSON format with consistent error handling 
+	•	Compression: Gzip compression for all HTTP responses 
+	•	Caching: HTTP cache headers for static assets 
+	•	Synchronization: Conflict resolution for concurrent updates 
+Security Measures: 
+	•	Encryption: AES-256 for sensitive data at rest 
+	•	Authentication: JWT tokens with short expiration times 
+	•	Authorization: Role-based access control (RBAC) 
+	•	Data Validation: Input sanitization and SQL injection prevention 
+	•	Audit Trail: Comprehensive logging of all system interactions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+4. 	Requirement Specification 
+Stakeholder Requirements Specification
+Functional Requirements
+
+Req ID
+Requirements
+Description 
+FR 1
+User Authentication
+
+FR 1.1
+User Management
+Allow citizen and leader registration, login, and profile management
+FR 2
+Issue Management
+
+FR 2.1
+Issue Lifecycle
+Citizens submit issues with photos/location, browse/filter issues, and track status updates
+FR 3
+Leader Integration
+
+FR 3.1
+Leader Directory & Contact
+Display leader directory with direct contact options and smart leader suggestions
+FR 4
+Response System
+
+FR 4.1
+Leader Response Management
+Leaders view jurisdiction issues, provide responses, and update issue status
+FR 4.2
+Action Planning
+Leaders document action plans, timelines, and resource requirements for issue resolution
+FR 5
+Community&System Features
+
+FR 5.1
+Platform Features
+Citizens support/comment on issues, receive real-time notifications via email/SMS, multi-language support (Kinyarwanda/English), mobile-responsive design, admin user management and content moderation, analytics dashboard, and secure data handling
+FR 6
+Reporting & Analytics
+
+
+Dashboard Analytics
+Generate comprehensive reports on issue trends, leader performance metrics, citizen engagement statistics, and system usage analytics for administrators and stakeholders
+FR 7
+Data Management
+
+
+System Integration
+API integration with government systems, automated backup procedures
+
+5. 	Other Nonfunctional Requirements
+	•	Example of Non-Functional Requirements 
+
+
+Requirement Type
+Req ID
+Description 
+Security
+NFR 1
+User Access - Authenticate users with secure login, password encryption, and two-factor authentication for leaders
+Performance 
+NFR 2
+Scalable - System must handle 10,000+ concurrent users with maximum 3-second page load time on 3G networks
+Usability 
+NFR 3
+Multi-language - Interface available in Kinyarwanda and English with easy language switching
+Auditability 
+NFR 4
+System Logging - Comprehensive audit trail of all user actions, issue updates, and leader responses with exportable reports
+Cross Browser Support 
+NFR 5
+Browser Compatibility - System accessible on major browsers: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
+Technology
+NFR 6
+Device Accessibility - System accessible on Desktop PC, Android 8.0+, iOS 12+, and basic feature phones via SMS
+Reliability
+NFR 7
+Data Integrity - Automatic data backup every 24 hours with 99.5% uptime and disaster recovery capabilities
+
+
+Guide to Non- Functional Requirements 
+5.1 Performance Requirements
+Response Time Requirements
+	•	Page Load: Maximum 3 seconds on 3G networks 
+	•	API Responses: Maximum 1 second for data queries 
+	•	Notifications: Delivered within 5 seconds of trigger
+5.2 Safety Requirements
+Capacity Requirements 
+	•	Concurrent Users: Support 10,000 simultaneous active users 
+	•	Database: Handle 500 transactions per second during peak usage 
+	•	File Uploads: Support 100 simultaneous photo uploads (10MB max each) 
+Availability Requirements 
+	•	System Uptime: 99.5% availability (maximum 44 hours downtime per year) 
+	•	Disaster Recovery: Full system recovery within 4 hours 
+	•	Data Loss: Maximum 1 hour of data loss in worst-case scenario 
+Scalability Requirements 
+	•	User Growth: Scale to 100,000 registered users within 2 years 
+	•	Geographic: Consistent performance across all 30 districts in Rwanda 
+	•	Mobile Efficiency: Maximum 2MB data consumption per user session
+5.3 Security Requirements
+Authentication & Access Control 
+	•	Multi-Factor Authentication: Required for all leader accounts using SMS/email OTP 
+	•	Password Policy: Minimum 8 characters with complexity requirements 
+	•	Role-Based Access: Citizens, Leaders, and Administrators with distinct permissions 
+	•	Session Security: Auto-logout after 30 minutes; account lockout after 5 failed attempts 
+Data Protection 
+	•	Encryption: HTTPS/TLS 1.3 for data in transit; AES-256 for data at rest 
+	•	Privacy Controls: Anonymous issue reporting option; user data export capabilities 
+	•	File Security: Encrypted photo storage with secure access controls 
+Compliance & Legal 
+	•	Rwanda Data Protection Law: Full compliance with national regulations 
+	•	Government Standards: Adherence to Rwanda's e-Government security framework 
+	•	Content Security: Input validation to prevent attacks; content moderation systems 
+System Security 
+	•	Infrastructure: Regular security updates, firewall protection, DDoS mitigation 
+	•	Monitoring: 24/7 security monitoring with incident response procedures 
+	•	Backups: Encrypted automated backups with secure offsite storage 
+Operational Security 
+	•	Administrative Controls: Multi-person authorization for critical system changes 
+	•	Audit Trails: Complete logging of all user and administrative actions 
+	•	User Education: In-app security guidance and phishing protection warnings
+5.4 Software Quality Attributes
+Reliability & Availability 
+	•	Availability: 99.5% uptime with maximum 4-hour recovery time from failures 
+	•	Reliability: Zero data loss during normal operations; maximum 1-hour data loss in disaster scenarios
+	•	Robustness: System continues operating with degraded performance during network issues or high load
+Usability & Accessibility 
+	•	Usability: New users can submit their first issue within 3 minutes without training 
+	•	Accessibility: WCAG 2.1 AA compliance for users with disabilities 
+	•	Ease of Use: Prioritized over advanced features - simple, intuitive interface for all literacy levels
+	•	Mobile-First: Touch-optimized interface with large buttons and clear navigation 
+Performance & Scalability 
+	•	Scalability: Horizontal scaling to support 10x user growth without architectural changes 
+	•	Performance: Consistent response times across all Rwanda's network conditions (2G to 4G) 
+	•	Efficiency: Minimal data usage (≤2MB per session) to ensure affordability
+Maintainability & Flexibility 
+	•	Maintainability: Modular architecture allowing feature updates without system downtime 
+	•	Adaptability: Easy configuration for different administrative levels or neighboring countries 
+	•	Testability: 80%+ automated test coverage with continuous integration 
+	•	Interoperability: REST APIs for integration with existing government systems 
+Portability & Compatibility 
+	•	Cross-Platform: Works on all devices (desktop, mobile, tablets) and major browsers 
+	•	Technology Independence: Database-agnostic design for easy migration between platforms 
+	•	Language Flexibility: Easy addition of new languages beyond Kinyarwanda and English 
+Security & Data Quality 
+	•	Data Integrity: 99.9% accuracy in data storage and retrieval operations 
+	•	Security: Multi-layered protection with regular security audits 
+	•	Correctness: Input validation ensures data quality and prevents system errors
+
+6.SDLC MODEL
+Choice of Development Methodology 
+Agile Development with Scrum Framework 
+	•	Enables continuous stakeholder feedback from citizens and leaders 
+	•	Accommodates changing governance requirements during development 
+	•	Reduces project risks through iterative delivery and early testing 
+Development Phases and Milestones 
+Phase 1: Foundation - User authentication, basic UI, and database setup complete Phase 2: Core Features - Issue management, leader directory, and response system operational Phase 3: Enhanced Features - Community engagement, multi-language support, and analytics implemented Phase 4: Deployment - Complete testing, security audit, and production-ready system delivered (weeks beyond week 12) 
+Testing Strategies 
+	•	Unit Testing: 80% code coverage with automated tests 
+	•	Integration Testing: API and database validation each sprint 
+	•	User Acceptance Testing: Stakeholder testing after each phase 
+	•	Performance Testing: Load testing for 10,000 concurrent users 
+	•	Security Testing: Vulnerability assessments and penetration testing 
+Deployment Approach 
+Blue-Green Deployment using: 
+	•	Docker for containerization 
+	•	Kubernetes for orchestration and scaling 
+	•	AWS/Azure cloud infrastructure 
+	•	GitHub Actions for CI/CD pipeline 
+	•	MongoDB Atlas for database hosting 
+	•	Cloudflare for CDN and security 
+Maintenance and Support Model 
+	•	Level 1 Support: User issues (4-hour response) 
+	•	Level 2 Support: Technical issues (2-hour response) 
+	•	Level 3 Support: Critical bugs (1-hour response)
+
+
+
+7. Appendix
+UML Diagrams of Ubwiyunge community feedback Platform
+
+1. System Interaction Sequence Diagram 
+
+Description :
+	•	This sequence diagram illustrates the complete workflow of the Ubwiyunge platform, showing how citizens submit issues, leaders respond, and the community engages with the feedback system. It demonstrates the end-to-end process from issue submission to resolution. 
+
+	•	Flow/Connection Representation: 
+The diagram captures the three main workflows: citizen issue submission, leader response management, and community engagement features, all integrated into one comprehensive sequence showing how all actors interact with the system.
+
+
+
+2. Use case Diagram
+
+Description 
+This use case diagram shows the main interactions between citizens, leaders, and community members within the Ubwiyunge platform for reporting and resolving community issues. 
+Actors: 
+	•	Citizen: Rwanda residents who report community issues 
+	•	Leader: Local government officials who respond to issues 
+	•	Community: Other citizens who engage with public issues
+
+
+
+3. Class diagram
+
+Description: 
+This class diagram shows the main classes, their attributes, methods, and relationships in the Ubwiyunge platform for managing citizen-government communication.
+
+
+
+
+4. ER Diagram
+
+Description:
+This Entity-Relationship diagram shows the core database entities and their relationships for the Ubwiyunge platform.
+
+
