@@ -19,6 +19,7 @@ function checkAuthStatus() {
             currentUser = JSON.parse(userData);
             isAuthenticated = true;
             updateAuthUI();
+            document.body.classList.add('auth-checked');
         } catch (error) {
             console.error('Error parsing saved user data:', error);
             clearSession();
@@ -31,6 +32,8 @@ function checkAuthStatus() {
         
         if (!publicPages.includes(currentPage)) {
             redirectToLogin();
+        } else {
+            document.body.classList.add('auth-checked');
         }
     }
 }
@@ -38,9 +41,7 @@ function checkAuthStatus() {
 function redirectToLogin() {
     const currentPage = window.location.pathname.split('/').pop();
     if (currentPage !== 'login.html' && currentPage !== 'register.html') {
-        setTimeout(() => {
-            window.location.href = 'login.html';
-        }, 100);
+        window.location.href = 'login.html';
     }
 }
 

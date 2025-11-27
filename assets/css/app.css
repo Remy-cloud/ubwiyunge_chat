@@ -3,6 +3,15 @@
    Clean & Modern UI Stylesheet
    ========================================== */
 
+/* Prevent content flash during authentication check */
+body:not(.auth-checked) {
+  visibility: hidden;
+}
+
+body.auth-checked {
+  visibility: visible;
+}
+
 /* CSS Variables */
 :root {
   /* Rwanda Colors */
