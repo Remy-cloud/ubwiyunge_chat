@@ -1,0 +1,818 @@
+/* ==========================================
+   UBWIYUNGE PLATFORM - RESPONSIVE DESIGN
+   Mobile-First Responsive Styles
+   ========================================== */
+
+/* ==========================================
+   MOBILE FIRST (320px and up)
+   Base styles in main.css are mobile-first
+   ========================================== */
+
+/* Extra Small Devices */
+@media (max-width: 374px) {
+  .container {
+    padding: 0 var(--space-sm);
+  }
+  
+  .main-header {
+    height: 60px;
+  }
+  
+  .main-content {
+    margin-top: 60px;
+  }
+  
+  .sidebar {
+    top: 60px;
+    height: calc(100vh - 60px);
+  }
+  
+  .content-wrapper {
+    padding: var(--space-md);
+  }
+  
+  .btn {
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-sm);
+  }
+  
+  .btn-lg {
+    padding: var(--space-md) var(--space-lg);
+    font-size: var(--font-size-base);
+  }
+  
+  .modal {
+    max-width: 95vw;
+    margin: var(--space-sm);
+  }
+  
+  .toast-container {
+    top: var(--space-sm);
+    right: var(--space-sm);
+    left: var(--space-sm);
+    max-width: none;
+  }
+  
+  .issue-card,
+  .leader-card {
+    margin-bottom: var(--space-md);
+  }
+  
+  .issue-header,
+  .issue-body,
+  .issue-footer,
+  .leader-header,
+  .leader-body {
+    padding: var(--space-md);
+  }
+  
+  .leader-stats {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+  
+  .leader-actions {
+    flex-direction: column;
+  }
+  
+  .issue-actions {
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: flex-start;
+  }
+  
+  .issue-buttons {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* ==========================================
+   SMALL DEVICES (375px and up)
+   ========================================== */
+
+@media (min-width: 375px) {
+  .container {
+    max-width: 100%;
+  }
+  
+  .brand-text {
+    display: inline;
+  }
+  
+  .issue-meta {
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+  
+  .leader-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ==========================================
+   MEDIUM SMALL DEVICES (480px and up)
+   ========================================== */
+
+@media (min-width: 480px) {
+  .modal {
+    max-width: 480px;
+  }
+  
+  .toast-container {
+    max-width: 400px;
+    right: var(--space-lg);
+    left: auto;
+  }
+  
+  .issue-actions {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .leader-actions {
+    flex-direction: row;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: var(--space-md);
+  }
+  
+  .form-row .form-group {
+    flex: 1;
+  }
+}
+
+/* ==========================================
+   TABLETS (768px and up)
+   ========================================== */
+
+@media (min-width: 768px) {
+  /* Hide mobile navigation */
+  .bottom-nav {
+    display: none;
+  }
+  
+  /* Adjust main content for sidebar */
+  .main-content {
+    margin-left: 280px;
+    padding-bottom: 0;
+  }
+  
+  /* Show sidebar by default */
+  .sidebar {
+    transform: translateX(0);
+  }
+  
+  /* Hide mobile menu toggle */
+  .menu-toggle {
+    display: none;
+  }
+  
+  /* Adjust header */
+  .header-content {
+    justify-content: flex-end;
+  }
+  
+  .header-left {
+    display: none;
+  }
+  
+  /* Grid layouts */
+  .issues-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+  
+  .leaders-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+  
+  /* Form improvements */
+  .form-row-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+  
+  .form-row-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+  }
+  
+  /* Modal improvements */
+  .modal {
+    max-width: 600px;
+  }
+  
+  .modal-footer {
+    justify-content: space-between;
+  }
+  
+  /* Card improvements */
+  .card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Issue card improvements */
+  .issue-images {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    display: grid;
+    gap: var(--space-md);
+  }
+  
+  .issue-image {
+    width: 100%;
+    height: 100px;
+  }
+  
+  /* Stats improvements */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+  
+  /* Navigation improvements */
+  .nav-item {
+    border-radius: var(--border-radius-lg);
+  }
+  
+  /* Page-specific layouts */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-xl);
+  }
+  
+  .dashboard-main {
+    order: 1;
+  }
+  
+  .dashboard-sidebar {
+    order: 2;
+  }
+}
+
+/* ==========================================
+   LARGE TABLETS (1024px and up)
+   ========================================== */
+
+@media (min-width: 1024px) {
+  /* Wider sidebar */
+  .sidebar {
+    width: 320px;
+  }
+  
+  .main-content {
+    margin-left: 320px;
+  }
+  
+  /* Three-column grids */
+  .issues-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .leaders-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  /* Larger modals */
+  .modal {
+    max-width: 800px;
+  }
+  
+  .modal-large {
+    max-width: 1000px;
+  }
+  
+  /* Page layouts */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-xl);
+  }
+  
+  .page-title {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  
+  .page-actions {
+    display: flex;
+    gap: var(--space-md);
+  }
+  
+  /* Issue reporting form */
+  .issue-form-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-xl);
+  }
+  
+  .issue-form-main {
+    order: 1;
+  }
+  
+  .issue-form-sidebar {
+    order: 2;
+  }
+  
+  /* Leader directory */
+  .leader-directory-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: var(--space-xl);
+  }
+  
+  .leader-filters {
+    order: 1;
+  }
+  
+  .leader-results {
+    order: 2;
+  }
+  
+  /* Chat layout */
+  .chat-container {
+    display: flex;
+    height: calc(100vh - var(--header-height));
+  }
+  
+  .chat-sidebar {
+    width: 320px;
+    min-width: 280px;
+    border-right: 1px solid var(--gray-200);
+    overflow-y: auto;
+  }
+  
+  .chat-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .conversation-item {
+    padding: var(--space-3);
+  }
+
+  .conversation-avatar {
+    width: 44px;
+    height: 44px;
+  }
+
+  .header-avatar {
+    width: 48px;
+    height: 48px;
+  }
+
+  .message-input-wrapper {
+    border-radius: 20px;
+  }
+
+  .btn-start-chat {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+  
+  /* Hover effects */
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .nav-item:hover {
+    transform: translateX(4px);
+  }
+}
+
+/* ==========================================
+   DESKTOP (1200px and up)
+   ========================================== */
+
+@media (min-width: 1200px) {
+  /* Container improvements */
+  .container {
+    max-width: 1200px;
+  }
+  
+  /* Four-column grids */
+  .leaders-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  /* Advanced layouts */
+  .dashboard-advanced {
+    display: grid;
+    grid-template-columns: 1fr 300px 300px;
+    grid-template-rows: auto 1fr;
+    gap: var(--space-xl);
+    grid-template-areas:
+      "header header header"
+      "main sidebar1 sidebar2";
+  }
+  
+  .dashboard-header {
+    grid-area: header;
+  }
+  
+  .dashboard-main {
+    grid-area: main;
+  }
+  
+  .dashboard-sidebar-1 {
+    grid-area: sidebar1;
+  }
+  
+  .dashboard-sidebar-2 {
+    grid-area: sidebar2;
+  }
+  
+  /* Issue tracking layout */
+  .issue-tracking-layout {
+    display: grid;
+    grid-template-columns: 250px 1fr 300px;
+    gap: var(--space-xl);
+  }
+  
+  /* Full-width modals for complex forms */
+  .modal-fullwidth {
+    max-width: 95vw;
+    width: 1200px;
+  }
+  
+  /* Enhanced navigation */
+  .sidebar {
+    width: 280px;
+  }
+  
+  .main-content {
+    margin-left: 280px;
+  }
+  
+  /* Multi-level navigation */
+  .nav-submenu {
+    margin-left: var(--space-lg);
+    margin-top: var(--space-sm);
+    padding-left: var(--space-lg);
+    border-left: 2px solid #E5E7EB;
+  }
+  
+  .nav-submenu .nav-item {
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* ==========================================
+   LARGE DESKTOP (1440px and up)
+   ========================================== */
+
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1400px;
+  }
+  
+  /* Five-column layouts */
+  .leaders-grid-large {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  
+  /* Spacious layouts */
+  .content-wrapper {
+    padding: var(--space-2xl) var(--space-xl);
+  }
+  
+  /* Enhanced dashboard */
+  .dashboard-enterprise {
+    display: grid;
+    grid-template-columns: 280px 1fr 350px;
+    grid-template-rows: auto 1fr auto;
+    gap: var(--space-xl);
+    min-height: calc(100vh - 70px);
+  }
+}
+
+/* ==========================================
+   ULTRA-WIDE (1920px and up)
+   ========================================== */
+
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1600px;
+  }
+  
+  /* Six-column layouts */
+  .leaders-grid-xl {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  
+  /* Maximum spacing */
+  .content-wrapper {
+    padding: var(--space-2xl);
+  }
+}
+
+/* ==========================================
+   PRINT STYLES
+   ========================================== */
+
+@media print {
+  .sidebar,
+  .bottom-nav,
+  .main-header,
+  .language-selector,
+  .btn,
+  .modal-overlay,
+  .toast-container {
+    display: none !important;
+  }
+  
+  .main-content {
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  
+  .card {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+  
+  .page {
+    page-break-after: always;
+  }
+  
+  .issue-card,
+  .leader-card {
+    page-break-inside: avoid;
+  }
+}
+
+/* ==========================================
+   ORIENTATION-SPECIFIC STYLES
+   ========================================== */
+
+@media (orientation: landscape) and (max-height: 600px) {
+  .main-header {
+    height: 50px;
+  }
+  
+  .main-content {
+    margin-top: 50px;
+  }
+  
+  .sidebar {
+    top: 50px;
+    height: calc(100vh - 50px);
+  }
+  
+  .bottom-nav {
+    height: 50px;
+  }
+  
+  .modal {
+    max-height: 80vh;
+  }
+}
+
+/* ==========================================
+   HIGH DPI DISPLAYS
+   ========================================== */
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .logo,
+  .brand-logo,
+  .leader-avatar {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* ==========================================
+   REDUCED MOTION
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover {
+    transform: none;
+  }
+  
+  .nav-item:hover {
+    transform: none;
+  }
+  
+  .loading-dot {
+    animation: none;
+  }
+  
+  .spinner {
+    animation: none;
+  }
+  
+  .skeleton {
+    animation: none;
+    background: #f0f0f0;
+  }
+  
+  .loading-text {
+    animation: none;
+  }
+}
+
+/* ==========================================
+   HIGH CONTRAST MODE
+   ========================================== */
+
+@media (prefers-contrast: high) {
+  .card {
+    border: 2px solid var(--text-primary);
+  }
+  
+  .btn {
+    border: 2px solid currentColor;
+  }
+  
+  .form-input,
+  .form-textarea,
+  .form-select {
+    border-width: 3px;
+  }
+  
+  .issue-status,
+  .badge {
+    border: 1px solid currentColor;
+  }
+}
+
+/* ==========================================
+   FORCED COLORS MODE
+   ========================================== */
+
+@media (forced-colors: active) {
+  .card,
+  .modal,
+  .toast {
+    border: 1px solid ButtonText;
+  }
+  
+  .btn {
+    border: 1px solid ButtonText;
+    background: ButtonFace;
+    color: ButtonText;
+  }
+  
+  .btn:hover {
+    background: Highlight;
+    color: HighlightText;
+  }
+  
+  .sidebar {
+    border-right: 1px solid ButtonText;
+  }
+  
+  .main-header {
+    border-bottom: 1px solid ButtonText;
+  }
+}
+
+/* ==========================================
+   MOBILE CHAT STYLES (480px and below)
+   ========================================== */
+
+@media (max-width: 480px) {
+  .chat-container {
+    flex-direction: column;
+    height: calc(100vh - var(--header-height) - 60px); /* Account for bottom nav */
+  }
+
+  .chat-sidebar {
+    width: 100%;
+    min-width: unset;
+    max-height: 40vh;
+    border-right: none;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .chat-main {
+    flex: 1;
+    height: 60vh;
+  }
+
+  .chat-header {
+    padding: var(--space-4);
+  }
+
+  .chat-header h2 {
+    font-size: var(--text-lg);
+  }
+
+  .search-bar {
+    padding: var(--space-3);
+  }
+
+  .conversation-item {
+    padding: var(--space-3);
+    margin-bottom: var(--space-1);
+  }
+
+  .conversation-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .conversation-name {
+    font-size: 14px;
+  }
+
+  .last-message {
+    font-size: 12px;
+  }
+
+  .conversation-header {
+    padding: var(--space-4);
+  }
+
+  .header-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .header-info h3 {
+    font-size: 16px;
+  }
+
+  .conversation-actions {
+    gap: 6px;
+  }
+
+  .btn-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  .messages-container {
+    padding: var(--space-4);
+  }
+
+  .message-item {
+    max-width: 95%;
+  }
+
+  .message-text {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  .message-input-container {
+    padding: var(--space-4);
+  }
+
+  .message-input-wrapper {
+    border-radius: 20px;
+    padding: 6px;
+  }
+
+  .attachment-btn, .send-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  #messageInput {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  .contact-item {
+    padding: var(--space-4);
+    border-radius: 12px;
+  }
+
+  .contact-avatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .contact-name {
+    font-size: 16px;
+  }
+
+  .btn-start-chat {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+}
