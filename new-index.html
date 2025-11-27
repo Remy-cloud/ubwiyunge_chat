@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubwiyunge - Community Feedback Platform</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="brand">
+                    <img src="assets/images/logo.svg" alt="Ubwiyunge" class="brand-logo">
+                    <span class="brand-text">Ubwiyunge</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="header-btn" id="notificationsBtn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="user-menu">
+                    <button class="user-avatar" id="userMenuBtn">
+                        <img src="assets/images/default-avatar.svg" alt="User Avatar" class="avatar-img">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" data-page="dashboard">
+                        <i class="fas fa-chart-pie nav-icon"></i>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="leaders">
+                        <i class="fas fa-users nav-icon"></i>
+                        <span class="nav-text">Leaders</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="chat">
+                        <i class="fas fa-comments nav-icon"></i>
+                        <span class="nav-text">Chat</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="profile">
+                        <i class="fas fa-user nav-icon"></i>
+                        <span class="nav-text">Profile</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Page -->
+        <section class="page active" id="dashboard-page">
+            <div class="page-header">
+                <h1 class="page-title">Dashboard</h1>
+                <p class="page-subtitle">Overview of community feedback and activities</p>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #FFB800;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" id="pendingIssues">12</h3>
+                        <p class="stat-label">Pending Cases</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #0066CC;">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" id="inProgressIssues">5</h3>
+                        <p class="stat-label">In Progress</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #00DD55;">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" id="resolvedIssues">45</h3>
+                        <p class="stat-label">Resolved</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #FF8800;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" id="totalLeaders">8</h3>
+                        <p class="stat-label">Active Leaders</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Cases -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Recent Cases</h2>
+                    <button class="btn btn-secondary">View All</button>
+                </div>
+                <div class="cases-list" id="recentCases">
+                    <!-- Cases will be loaded here -->
+                    <div class="case-card">
+                        <div class="case-status pending"></div>
+                        <div class="case-content">
+                            <h4 class="case-title">Road Repair Needed</h4>
+                            <p class="case-description">Potholes on KN 15 Ave need urgent attention...</p>
+                            <div class="case-meta">
+                                <span class="case-date">2 days ago</span>
+                                <span class="case-location">Gasabo, Kacyiru</span>
+                            </div>
+                        </div>
+                        <div class="case-actions">
+                            <button class="btn-icon">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Quick Actions</h2>
+                </div>
+                <div class="quick-actions">
+                    <button class="action-btn primary">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Report Issue</span>
+                    </button>
+                    <button class="action-btn secondary">
+                        <i class="fas fa-search"></i>
+                        <span>Find Leader</span>
+                    </button>
+                    <button class="action-btn tertiary">
+                        <i class="fas fa-comments"></i>
+                        <span>Start Chat</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leaders Page -->
+        <section class="page" id="leaders-page">
+            <div class="page-header">
+                <h1 class="page-title">Leaders Directory</h1>
+                <p class="page-subtitle">Connect with your local government representatives</p>
+            </div>
+
+            <!-- Search and Filter -->
+            <div class="search-filter">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search leaders..." id="leaderSearch">
+                </div>
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-level="all">All</button>
+                    <button class="filter-tab" data-level="district">District</button>
+                    <button class="filter-tab" data-level="sector">Sector</button>
+                    <button class="filter-tab" data-level="cell">Cell</button>
+                </div>
+            </div>
+
+            <!-- Leaders Grid -->
+            <div class="leaders-grid" id="leadersGrid">
+                <!-- Leaders will be loaded here -->
+                <div class="leader-card">
+                    <div class="leader-avatar">
+                        <img src="assets/images/default-avatar.svg" alt="Leader">
+                    </div>
+                    <div class="leader-info">
+                        <h3 class="leader-name">Jean Baptiste Munyangabe</h3>
+                        <p class="leader-title">Mayor of Gasabo District</p>
+                        <p class="leader-location">Gasabo District</p>
+                    </div>
+                    <div class="leader-stats">
+                        <div class="stat">
+                            <span class="stat-value">45</span>
+                            <span class="stat-label">Resolved</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">4.5</span>
+                            <span class="stat-label">Rating</span>
+                        </div>
+                    </div>
+                    <div class="leader-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-comments"></i>
+                            Chat
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-phone"></i>
+                            Call
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chat Page -->
+        <section class="page" id="chat-page">
+            <div class="page-header">
+                <h1 class="page-title">Messages</h1>
+                <p class="page-subtitle">Communicate with leaders and community members</p>
+            </div>
+
+            <div class="chat-container">
+                <!-- Chat List -->
+                <div class="chat-list">
+                    <div class="chat-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search conversations...">
+                    </div>
+                    <div class="conversations" id="conversations">
+                        <div class="conversation-item active">
+                            <div class="conversation-avatar">
+                                <img src="assets/images/default-avatar.svg" alt="Avatar">
+                            </div>
+                            <div class="conversation-info">
+                                <h4 class="conversation-name">Marie Claire Uwimana</h4>
+                                <p class="conversation-preview">Thank you for reporting this issue...</p>
+                                <span class="conversation-time">2 min ago</span>
+                            </div>
+                        </div>
+                        <div class="conversation-item">
+                            <div class="conversation-avatar">
+                                <img src="assets/images/default-avatar.svg" alt="Avatar">
+                            </div>
+                            <div class="conversation-info">
+                                <h4 class="conversation-name">Paul Kagame Nzeyimana</h4>
+                                <p class="conversation-preview">We've scheduled the repair work...</p>
+                                <span class="conversation-time">1 hour ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Messages -->
+                <div class="chat-messages">
+                    <div class="chat-header">
+                        <div class="chat-user-info">
+                            <img src="assets/images/default-avatar.svg" alt="Avatar" class="chat-avatar">
+                            <div>
+                                <h3 class="chat-user-name">Marie Claire Uwimana</h3>
+                                <p class="chat-user-status">Executive Secretary - Online</p>
+                            </div>
+                        </div>
+                        <div class="chat-actions">
+                            <button class="btn-icon">
+                                <i class="fas fa-phone"></i>
+                            </button>
+                            <button class="btn-icon">
+                                <i class="fas fa-video"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="messages-container" id="messagesContainer">
+                        <div class="message received">
+                            <div class="message-avatar">
+                                <img src="assets/images/default-avatar.svg" alt="Avatar">
+                            </div>
+                            <div class="message-content">
+                                <p>Thank you for reporting the water pipe issue. We've dispatched a team to investigate.</p>
+                                <span class="message-time">10:30 AM</span>
+                            </div>
+                        </div>
+                        <div class="message sent">
+                            <div class="message-content">
+                                <p>Great! How long do you think it will take to fix?</p>
+                                <span class="message-time">10:32 AM</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="message-input">
+                        <button class="attachment-btn">
+                            <i class="fas fa-paperclip"></i>
+                        </button>
+                        <input type="text" placeholder="Type your message..." id="messageInput">
+                        <button class="send-btn" id="sendBtn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Page -->
+        <section class="page" id="profile-page">
+            <div class="page-header">
+                <h1 class="page-title">User Profile</h1>
+                <p class="page-subtitle">Manage your account and preferences</p>
+            </div>
+
+            <div class="profile-container">
+                <!-- Profile Info -->
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <img src="assets/images/default-avatar.svg" alt="User Avatar" id="profileAvatar">
+                            <button class="change-avatar-btn">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                        </div>
+                        <div class="profile-info">
+                            <h2 class="profile-name" id="profileName">John Doe</h2>
+                            <p class="profile-email" id="profileEmail">john.doe@example.com</p>
+                            <span class="profile-badge">Verified Citizen</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-stats">
+                        <div class="profile-stat">
+                            <span class="stat-number">12</span>
+                            <span class="stat-label">Issues Reported</span>
+                        </div>
+                        <div class="profile-stat">
+                            <span class="stat-number">8</span>
+                            <span class="stat-label">Resolved</span>
+                        </div>
+                        <div class="profile-stat">
+                            <span class="stat-number">4.8</span>
+                            <span class="stat-label">Satisfaction</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Form -->
+                <div class="profile-form-card">
+                    <h3 class="form-title">Personal Information</h3>
+                    <form class="profile-form" id="profileForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" value="John">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" value="Doe">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" value="john.doe@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" value="+250788123456">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="district">District</label>
+                                <select id="district">
+                                    <option>Gasabo</option>
+                                    <option>Kicukiro</option>
+                                    <option>Nyarugenge</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sector">Sector</label>
+                                <select id="sector">
+                                    <option>Kimironko</option>
+                                    <option>Kacyiru</option>
+                                    <option>Remera</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Settings -->
+                <div class="settings-card">
+                    <h3 class="form-title">Preferences</h3>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Email Notifications</h4>
+                            <p>Receive updates about your cases via email</p>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>SMS Notifications</h4>
+                            <p>Get important updates via SMS</p>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Language</h4>
+                            <p>Choose your preferred language</p>
+                        </div>
+                        <select class="setting-select">
+                            <option>English</option>
+                            <option>Kinyarwanda</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="bottom-nav-item active" data-page="dashboard">
+            <i class="fas fa-chart-pie"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="#" class="bottom-nav-item" data-page="leaders">
+            <i class="fas fa-users"></i>
+            <span>Leaders</span>
+        </a>
+        <a href="#" class="bottom-nav-item" data-page="chat">
+            <i class="fas fa-comments"></i>
+            <span>Chat</span>
+        </a>
+        <a href="#" class="bottom-nav-item" data-page="profile">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- JavaScript -->
+    <script src="assets/js/new-app.js"></script>
+</body>
+</html>

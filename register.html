@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Ubwiyunge Community Platform</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/app.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-green) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-4);
+        }
+        
+        .register-container {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--space-8);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .register-header {
+            text-align: center;
+            margin-bottom: var(--space-6);
+        }
+        
+        .register-logo {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto var(--space-4);
+            background: var(--primary-blue);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: var(--text-2xl);
+        }
+        
+        .register-title {
+            color: var(--gray-800);
+            font-size: var(--text-2xl);
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+        }
+        
+        .register-subtitle {
+            color: var(--gray-600);
+            font-size: var(--text-sm);
+        }
+        
+        .register-tabs {
+            display: flex;
+            background: var(--gray-100);
+            border-radius: var(--radius-md);
+            padding: var(--space-1);
+            margin-bottom: var(--space-6);
+        }
+        
+        .register-tab {
+            flex: 1;
+            padding: var(--space-3);
+            text-align: center;
+            border: none;
+            background: transparent;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .register-tab.active {
+            background: var(--white);
+            color: var(--primary-blue);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-4);
+            margin-bottom: var(--space-4);
+        }
+        
+        .form-group {
+            margin-bottom: var(--space-4);
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 500;
+            color: var(--gray-700);
+            margin-bottom: var(--space-2);
+        }
+        
+        .form-input, .form-select {
+            width: 100%;
+            padding: var(--space-3);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-md);
+            font-size: var(--text-base);
+            transition: border-color 0.2s;
+        }
+        
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+        
+        .register-btn {
+            width: 100%;
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: var(--space-3);
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: var(--text-base);
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-bottom: var(--space-4);
+        }
+        
+        .register-btn:hover {
+            background: #0056b3;
+        }
+        
+        .register-btn:disabled {
+            background: var(--gray-400);
+            cursor: not-allowed;
+        }
+        
+        .register-footer {
+            text-align: center;
+            color: var(--gray-600);
+            font-size: var(--text-sm);
+        }
+        
+        .register-footer a {
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+        
+        .error-message {
+            background: var(--error);
+            color: var(--white);
+            padding: var(--space-3);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-4);
+            display: none;
+        }
+        
+        .success-message {
+            background: var(--success);
+            color: var(--white);
+            padding: var(--space-3);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-4);
+            display: none;
+        }
+        
+        .leader-fields {
+            display: none;
+        }
+        
+        .leader-fields.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-header">
+            <div class="register-logo">
+                <i class="fas fa-user-plus"></i>
+            </div>
+            <h1 class="register-title">Join Ubwiyunge</h1>
+            <p class="register-subtitle">Create your account to connect with community leaders</p>
+        </div>
+        
+        <div class="register-tabs">
+            <button class="register-tab active" data-type="citizen">Citizen</button>
+            <button class="register-tab" data-type="leader">Leader</button>
+        </div>
+        
+        <div class="error-message" id="errorMessage"></div>
+        <div class="success-message" id="successMessage"></div>
+        
+        <form class="register-form" id="registerForm">
+            <input type="hidden" id="userType" name="userType" value="citizen">
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input type="text" id="firstName" name="firstName" class="form-input" placeholder="Enter your first name" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Enter your last name" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" required>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" class="form-input" placeholder="+250 XXX XXX XXX" required>
+                </div>
+                <div class="form-group">
+                    <label for="district" class="form-label">District</label>
+                    <select id="district" name="district" class="form-select" required>
+                        <option value="">Select District</option>
+                        <option value="Gasabo">Gasabo</option>
+                        <option value="Kicukiro">Kicukiro</option>
+                        <option value="Nyarugenge">Nyarugenge</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="sector" class="form-label">Sector</label>
+                <select id="sector" name="sector" class="form-select" required>
+                    <option value="">Select Sector</option>
+                    <!-- Options will be populated based on district selection -->
+                </select>
+            </div>
+            
+            <!-- Leader-specific fields -->
+            <div class="leader-fields" id="leaderFields">
+                <div class="form-group">
+                    <label for="position" class="form-label">Position/Title</label>
+                    <input type="text" id="position" name="position" class="form-input" placeholder="e.g., Mayor, Executive Secretary">
+                </div>
+                
+                <div class="form-group">
+                    <label for="department" class="form-label">Department/Office</label>
+                    <input type="text" id="department" name="department" class="form-input" placeholder="e.g., Executive Office">
+                </div>
+                
+                <div class="form-group">
+                    <label for="officeAddress" class="form-label">Office Address</label>
+                    <input type="text" id="officeAddress" name="officeAddress" class="form-input" placeholder="Office location">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" name="password" class="form-input" placeholder="Create password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" placeholder="Confirm password" required>
+                </div>
+            </div>
+            
+            <button type="submit" class="register-btn" id="registerBtn">
+                <i class="fas fa-user-plus"></i>
+                Create Account
+            </button>
+        </form>
+        
+        <div class="register-footer">
+            <p>Already have an account? <a href="login.html">Sign in here</a></p>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="assets/js/auth.js"></script>
+    <script>
+        // Registration form functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            setupRegistrationForm();
+        });
+
+        function setupRegistrationForm() {
+            // Handle tab switching between Citizen and Leader
+            const tabs = document.querySelectorAll('.register-tab');
+            const leaderFields = document.getElementById('leaderFields');
+            const userTypeInput = document.getElementById('userType');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    const userType = this.dataset.type;
+                    userTypeInput.value = userType;
+                    
+                    // Show/hide leader-specific fields
+                    if (userType === 'leader') {
+                        leaderFields.classList.add('active');
+                    } else {
+                        leaderFields.classList.remove('active');
+                    }
+                });
+            });
+
+            // Handle district change to populate sectors
+            const districtSelect = document.getElementById('district');
+            const sectorSelect = document.getElementById('sector');
+
+            if (districtSelect && sectorSelect) {
+                districtSelect.addEventListener('change', function() {
+                    populateSectors(this.value);
+                });
+            }
+
+            // Form submission
+            const registerForm = document.getElementById('registerForm');
+            if (registerForm) {
+                registerForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    handleRegistrationSubmit();
+                });
+            }
+        }
+
+        function populateSectors(district) {
+            const sectorSelect = document.getElementById('sector');
+            
+            // Clear existing options
+            sectorSelect.innerHTML = '<option value="">Select Sector</option>';
+            
+            const sectorsByDistrict = {
+                'Gasabo': [
+                    'Bumbogo', 'Gatsata', 'Jali', 'Gikomero', 'Gisozi', 'Jabana',
+                    'Kinyinya', 'Ndera', 'Nduba', 'Rusororo', 'Rutunga', 'Kacyiru',
+                    'Kimihurura', 'Kimironko', 'Remera'
+                ],
+                'Kicukiro': [
+                    'Gahanga', 'Gatenga', 'Gikondo', 'Kagarama', 'Kanombe',
+                    'Kicukiro', 'Niboye', 'Nyarugunga', 'Rebero', 'Masaka'
+                ],
+                'Nyarugenge': [
+                    'Gitega', 'Kanyinya', 'Kigali', 'Kimisagara', 'Mageragere',
+                    'Muhima', 'Nyakabanda', 'Nyamirambo', 'Rwezamenyo', 'Nyarugenge'
+                ]
+            };
+
+            if (district && sectorsByDistrict[district]) {
+                sectorsByDistrict[district].forEach(sector => {
+                    const option = document.createElement('option');
+                    option.value = sector;
+                    option.textContent = sector;
+                    sectorSelect.appendChild(option);
+                });
+            }
+        }
+
+        function handleRegistrationSubmit() {
+            const formData = new FormData(document.getElementById('registerForm'));
+            const data = Object.fromEntries(formData);
+
+            // Validate required fields
+            if (!data.firstName || data.firstName.trim() === '') {
+                showMessage('First name is required', 'error');
+                return;
+            }
+            if (!data.lastName || data.lastName.trim() === '') {
+                showMessage('Last name is required', 'error');
+                return;
+            }
+            if (!data.email || data.email.trim() === '') {
+                showMessage('Email is required', 'error');
+                return;
+            }
+            if (!data.phone || data.phone.trim() === '') {
+                showMessage('Phone number is required', 'error');
+                return;
+            }
+            if (!data.district || data.district.trim() === '') {
+                showMessage('District is required', 'error');
+                return;
+            }
+            if (!data.sector || data.sector.trim() === '') {
+                showMessage('Sector is required', 'error');
+                return;
+            }
+            if (!data.password || data.password.trim() === '') {
+                showMessage('Password is required', 'error');
+                return;
+            }
+            if (!data.confirmPassword || data.confirmPassword.trim() === '') {
+                showMessage('Please confirm your password', 'error');
+                return;
+            }
+
+            // Validate password match
+            if (data.password !== data.confirmPassword) {
+                showMessage('Passwords do not match', 'error');
+                return;
+            }
+
+            // Validate password length
+            if (data.password.length < 8) {
+                showMessage('Password must be at least 8 characters long', 'error');
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = document.getElementById('registerBtn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
+            submitBtn.disabled = true;
+
+            // Create and save user
+            setTimeout(() => {
+                const user = {
+                    id: 'user_' + Date.now(),
+                    firstName: data.firstName.trim(),
+                    lastName: data.lastName.trim(),
+                    email: data.email.trim(),
+                    phone: data.phone.trim(),
+                    district: data.district,
+                    sector: data.sector,
+                    address: `${data.sector}, ${data.district} District, Rwanda`,
+                    avatar: 'assets/images/default-avatar.svg',
+                    role: data.userType,
+                    createdDate: new Date().toISOString()
+                };
+
+                // Add leader-specific fields if user is a leader
+                if (data.userType === 'leader') {
+                    user.position = (data.position || '').trim();
+                    user.department = (data.department || '').trim();
+                    user.officeAddress = (data.officeAddress || '').trim();
+                }
+
+                // Save user data to localStorage
+                const users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+                users.push(user);
+                localStorage.setItem('registeredUsers', JSON.stringify(users));
+
+                // Auto-login the user
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                localStorage.setItem('isAuthenticated', 'true');
+
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+
+                // Redirect to profile
+                showMessage('Account created successfully! Redirecting...', 'success');
+                setTimeout(() => {
+                    window.location.href = 'profile.html';
+                }, 1000);
+            }, 1000);
+        }
+
+        function showMessage(message, type) {
+            const errorDiv = document.getElementById('errorMessage');
+            const successDiv = document.getElementById('successMessage');
+
+            // Hide both messages first
+            errorDiv.style.display = 'none';
+            successDiv.style.display = 'none';
+
+            if (type === 'error') {
+                errorDiv.textContent = message;
+                errorDiv.style.display = 'block';
+                setTimeout(() => {
+                    errorDiv.style.display = 'none';
+                }, 5000);
+            } else if (type === 'success') {
+                successDiv.textContent = message;
+                successDiv.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

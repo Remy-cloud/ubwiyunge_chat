@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - Ubwiyunge Community Platform</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="brand">
+                    <img src="assets/images/logo.svg" alt="Ubwiyunge" class="brand-logo">
+                    <span class="brand-text">Ubwiyunge</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="header-btn" id="notificationsBtn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="user-menu">
+                    <button class="user-avatar" id="userMenuBtn">
+                        <img src="assets/images/default-avatar.svg" alt="User Avatar" class="avatar-img">
+                    </button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <div class="dropdown-header">
+                            <div class="dropdown-avatar">
+                                <img src="assets/images/default-avatar.svg" alt="User Avatar" class="dropdown-avatar-img">
+                            </div>
+                            <div class="dropdown-user-info">
+                                <span class="dropdown-username" id="headerUsername">Guest User</span>
+                                <span class="dropdown-email" id="headerEmail">guest@example.com</span>
+                            </div>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="profile.html" class="dropdown-link">
+                                    <i class="fas fa-user"></i>
+                                    <span>Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="dropdown-link" onclick="handleLogout()">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span>Sign Out</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">
+                        <i class="fas fa-chart-pie nav-icon"></i>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="leaders.html" class="nav-link">
+                        <i class="fas fa-users nav-icon"></i>
+                        <span class="nav-text">Leaders</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="chat.html" class="nav-link active">
+                        <i class="fas fa-comments nav-icon"></i>
+                        <span class="nav-text">Chat</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="reports.html" class="nav-link">
+                        <i class="fas fa-file-alt nav-icon"></i>
+                        <span class="nav-text">Reports</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="profile.html" class="nav-link">
+                        <i class="fas fa-user nav-icon"></i>
+                        <span class="nav-text">Profile</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="chat-container">
+            <!-- Chat Sidebar -->
+            <div class="chat-sidebar">
+                <div class="chat-header">
+                    <h2>Messages</h2>
+                    <button class="new-chat-btn" title="New Chat">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="search-bar">
+                    <div class="search-input-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="conversationSearch" placeholder="Search conversations...">
+                    </div>
+                </div>
+
+                <!-- Conversations List -->
+                <div class="conversations-section active" id="conversationsSection">
+                    <div class="conversations-list" id="conversationsList">
+                        <!-- Conversations will be loaded here by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Main Area -->
+            <div class="chat-main">
+                <!-- Conversation Header -->
+                <div class="conversation-header" id="conversationHeader">
+                    <div class="default-header">
+                        <div class="welcome-message">
+                            <i class="fas fa-comments"></i>
+                            <h3>Welcome to Ubwiyunge Chat</h3>
+                            <p>Connect with community leaders and government officials</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Messages Container -->
+                <div class="messages-container" id="messagesContainer">
+                    <div class="default-chat-state">
+                        <div class="chat-illustration">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <h3>Start a conversation</h3>
+                        <p>Your conversations will appear here</p>
+                    </div>
+                </div>
+
+                <!-- Message Input -->
+                <div class="message-input-container" id="messageInputContainer" style="display: none;">
+                    <div class="message-input-wrapper">
+                        <button class="attachment-btn" title="Attach File">
+                            <i class="fas fa-paperclip"></i>
+                        </button>
+                        <textarea id="messageInput" placeholder="Type a message..." rows="1"></textarea>
+                        <button class="send-btn" id="sendMessageBtn" title="Send Message">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="bottom-nav-item">
+            <i class="fas fa-chart-pie"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="leaders.html" class="bottom-nav-item">
+            <i class="fas fa-users"></i>
+            <span>Leaders</span>
+        </a>
+        <a href="chat.html" class="bottom-nav-item active">
+            <i class="fas fa-comments"></i>
+            <span>Chat</span>
+        </a>
+        <a href="reports.html" class="bottom-nav-item">
+            <i class="fas fa-file-alt"></i>
+            <span>Reports</span>
+        </a>
+        <a href="profile.html" class="bottom-nav-item">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- JavaScript -->
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/messaging-hybrid.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script>
+        // Chat page specific functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            setupMessageInput();
+            updateHeaderUserInfo();
+        });
+        
+        // Update header user information
+        function updateHeaderUserInfo() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+            
+            if (currentUser && currentUser.firstName) {
+                // Update username in dropdown
+                const usernameElement = document.getElementById('headerUsername');
+                if (usernameElement) {
+                    usernameElement.textContent = `${currentUser.firstName} ${currentUser.lastName}`;
+                }
+                
+                // Update email in dropdown
+                const emailElement = document.getElementById('headerEmail');
+                if (emailElement) {
+                    emailElement.textContent = currentUser.email;
+                }
+                
+                // Update avatar images
+                const avatarImages = document.querySelectorAll('.avatar-img, .dropdown-avatar-img');
+                avatarImages.forEach(img => {
+                    if (currentUser.avatar && currentUser.avatar !== 'assets/images/default-avatar.svg') {
+                        img.src = currentUser.avatar;
+                    }
+                });
+            }
+        }
+
+        // Setup message input auto-resize
+        function setupMessageInput() {
+            const messageInput = document.getElementById('messageInput');
+            if (messageInput) {
+                messageInput.addEventListener('input', function() {
+                    // Auto-resize textarea
+                    this.style.height = 'auto';
+                    this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+                });
+            }
+        }
+
+        // Handle conversation selection to show/hide message input
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.conversation-item') || e.target.closest('.contact-item') || e.target.closest('.contact-item-small')) {
+                showMessageInput();
+            }
+        });
+
+        // Show message input when conversation is active
+        function showMessageInput() {
+            const messageInputContainer = document.getElementById('messageInputContainer');
+            const messagesContainer = document.getElementById('messagesContainer');
+            
+            if (messageInputContainer) {
+                messageInputContainer.style.display = 'block';
+            }
+            
+            // Hide default state
+            const defaultState = messagesContainer.querySelector('.default-chat-state');
+            if (defaultState) {
+                defaultState.style.display = 'none';
+            }
+        }
+
+        // Hide message input when no conversation is selected
+        function hideMessageInput() {
+            const messageInputContainer = document.getElementById('messageInputContainer');
+            if (messageInputContainer) {
+                messageInputContainer.style.display = 'none';
+            }
+        }
+
+        // Handle user menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const userMenuBtn = document.getElementById('userMenuBtn');
+            const userDropdown = document.getElementById('userDropdown');
+            
+            if (userMenuBtn && userDropdown) {
+                userMenuBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    userDropdown.classList.toggle('active');
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function() {
+                    userDropdown.classList.remove('active');
+                });
+                
+                // Prevent dropdown from closing when clicking inside it
+                userDropdown.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

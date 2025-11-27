@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Ubwiyunge Community Platform</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/app.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0066cc 0%, #10b981 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .login-container {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .login-logo {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 16px;
+            background: #0066cc;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 24px;
+        }
+        
+        .login-title {
+            color: #1f2937;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            margin: 0 0 8px 0;
+        }
+        
+        .login-subtitle {
+            color: #6b7280;
+            font-size: 14px;
+            margin: 0;
+        }
+        
+        .login-tabs {
+            display: flex;
+            background: #f3f4f6;
+            border-radius: 8px;
+            padding: 4px;
+            margin-bottom: 24px;
+        }
+        
+        .login-tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+            color: #6b7280;
+        }
+        
+        .login-tab.active {
+            background: #ffffff;
+            color: #0066cc;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 16px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+        
+        .login-btn {
+            width: 100%;
+            background: #0066cc;
+            color: #ffffff;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-bottom: 16px;
+            display: block;
+            box-sizing: border-box;
+        }
+        
+        .login-btn:hover {
+            background: #0056b3;
+        }
+        
+        .login-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+        
+        .login-footer {
+            text-align: center;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        .login-footer a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        
+        .login-footer p {
+            margin: 8px 0;
+        }
+        
+        .error-message {
+            background: #ef4444;
+            color: #ffffff;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            display: none;
+        }
+        
+        .guest-access {
+            background: #f3f4f6;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 16px;
+            text-align: center;
+        }
+        
+        .guest-access p {
+            margin: 8px 0;
+        }
+        
+        .guest-btn {
+            background: #6b7280;
+            color: #ffffff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 8px;
+        }
+        
+        .guest-btn:hover {
+            background: #4b5563;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <div class="login-logo">
+                <i class="fas fa-users"></i>
+            </div>
+            <h1 class="login-title">Welcome to Ubwiyunge</h1>
+            <p class="login-subtitle">Connect with your community leaders</p>
+        </div>
+        
+        <div class="login-tabs">
+            <button class="login-tab active" data-type="citizen">Citizen</button>
+            <button class="login-tab" data-type="leader">Leader</button>
+        </div>
+        
+        <div class="error-message" id="errorMessage"></div>
+        
+        <form class="login-form" id="loginForm">
+            <input type="hidden" id="loginType" name="loginType" value="citizen">
+            
+            <div class="form-group">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required>
+            </div>
+            
+            <button type="submit" class="login-btn" id="loginBtn">
+                <i class="fas fa-sign-in-alt"></i>
+                Sign In
+            </button>
+        </form>
+        
+        <div class="login-footer">
+            <p>Don't have an account? <a href="register.html">Sign up here</a></p>
+            <p><a href="#" onclick="showForgotPassword()">Forgot your password?</a></p>
+        </div>
+        
+        <div class="guest-access">
+            <p><strong>Browse without account</strong></p>
+            <p style="font-size: var(--text-sm); color: var(--gray-600); margin: var(--space-2) 0;">View recent cases and public information</p>
+            <a href="index.html" class="guest-btn">
+                <i class="fas fa-eye"></i>
+                Continue as Guest
+            </a>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="assets/js/auth.js"></script>
+    <script>
+        // Login form functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            setupLoginForm();
+        });
+
+        function setupLoginForm() {
+            // Handle tab switching between Citizen and Leader
+            const tabs = document.querySelectorAll('.login-tab');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    const userType = this.dataset.type;
+                    document.getElementById('loginType').value = userType;
+                    
+                    // You can add different behavior for citizen vs leader login here
+                    // For now, they use the same form
+                });
+            });
+
+            // Handle form submission
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    handleLoginSubmit();
+                });
+            }
+        }
+
+        function handleLoginSubmit() {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (!email || !password) {
+                showLoginMessage('Please fill in all fields', 'error');
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = document.getElementById('loginBtn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing in...';
+            submitBtn.disabled = true;
+
+            // Process login
+            setTimeout(() => {
+                // Try to find registered user with matching email
+                const users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+                let user = users.find(u => u.email === email);
+
+                if (user) {
+                    // Use registered user data
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    localStorage.setItem('isAuthenticated', 'true');
+                    window.location.href = 'index.html';
+                } else {
+                    // No user found - show error instead of creating fake user
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    showLoginMessage('No account found with this email address. Please register first.', 'error');
+                    return;
+                }
+            }, 800);
+        }
+
+        function showLoginMessage(message, type) {
+            const errorDiv = document.getElementById('errorMessage');
+
+            if (type === 'error') {
+                errorDiv.style.background = 'var(--error)';
+            } else if (type === 'success') {
+                errorDiv.style.background = 'var(--success)';
+            }
+
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+
+            setTimeout(() => {
+                errorDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        function showForgotPassword() {
+            alert('Forgot password functionality would be implemented here.');
+        }
+    </script>
+</body>
+</html>

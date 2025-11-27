@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - Ubwiyunge Community Platform</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="brand">
+                    <img src="assets/images/logo.svg" alt="Ubwiyunge" class="brand-logo">
+                    <span class="brand-text">Ubwiyunge</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="header-btn" id="notificationsBtn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="user-menu">
+                    <button class="user-avatar" id="userMenuBtn">
+                        <img src="assets/images/default-avatar.svg" alt="User Avatar" class="avatar-img">
+                    </button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <div class="dropdown-header">
+                            <div class="dropdown-avatar">
+                                <img src="assets/images/default-avatar.svg" alt="User Avatar" class="dropdown-avatar-img">
+                            </div>
+                            <div class="dropdown-user-info">
+                                <span class="dropdown-username">John Doe</span>
+                                <span class="dropdown-email">john.doe@example.com</span>
+                            </div>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="profile.html" class="dropdown-link">
+                                    <i class="fas fa-user"></i>
+                                    <span>Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="dropdown-link" onclick="handleLogout()">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span>Sign Out</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">
+                        <i class="fas fa-chart-pie nav-icon"></i>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="leaders.html" class="nav-link">
+                        <i class="fas fa-users nav-icon"></i>
+                        <span class="nav-text">Leaders</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="chat.html" class="nav-link">
+                        <i class="fas fa-comments nav-icon"></i>
+                        <span class="nav-text">Chat</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="reports.html" class="nav-link active">
+                        <i class="fas fa-file-alt nav-icon"></i>
+                        <span class="nav-text">Reports</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="profile.html" class="nav-link">
+                        <i class="fas fa-user nav-icon"></i>
+                        <span class="nav-text">Profile</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">Community Reports</h1>
+            <p class="page-subtitle">View and manage all submitted issues</p>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="filter-controls">
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="statusFilter">Status:</label>
+                    <select id="statusFilter">
+                        <option value="all">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="resolved">Resolved</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="categoryFilter">Category:</label>
+                    <select id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="infrastructure">Infrastructure</option>
+                        <option value="health">Health Services</option>
+                        <option value="education">Education</option>
+                        <option value="security">Security & Safety</option>
+                        <option value="environment">Environment</option>
+                        <option value="transport">Transport</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="priorityFilter">Priority:</label>
+                    <select id="priorityFilter">
+                        <option value="all">All Priorities</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="dateSort">Sort by:</label>
+                    <select id="dateSort">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="updated">Recently Updated</option>
+                    </select>
+                </div>
+                <div class="search-group">
+                    <input type="text" id="reportSearch" placeholder="Search reports...">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reports Statistics -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="totalReports">0</h3>
+                    <p>Total Reports</p>
+                </div>
+            </div>
+            <div class="stat-card pending">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="pendingReports">0</h3>
+                    <p>Pending</p>
+                </div>
+            </div>
+            <div class="stat-card in-progress">
+                <div class="stat-icon">
+                    <i class="fas fa-spinner"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="inProgressReports">0</h3>
+                    <p>In Progress</p>
+                </div>
+            </div>
+            <div class="stat-card resolved">
+                <div class="stat-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="resolvedReports">0</h3>
+                    <p>Resolved</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reports Table -->
+        <div class="table-container">
+            <div class="table-header">
+                <h2>Reports List</h2>
+                <div class="table-actions">
+                    <span id="resultCount" class="result-count">Showing 0 reports</span>
+                    <button class="btn btn-primary" id="reportIssueBtn">
+                        <i class="fas fa-plus"></i> Report New Issue
+                    </button>
+                </div>
+            </div>
+            
+            <div class="table-wrapper">
+                <table class="reports-table">
+                    <thead>
+                        <tr>
+                            <th>Report ID</th>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Priority</th>
+                            <th>Location</th>
+                            <th>Submitted By</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reportsTableBody">
+                        <!-- Reports will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="bottom-nav-item">
+            <i class="fas fa-chart-pie"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="leaders.html" class="bottom-nav-item">
+            <i class="fas fa-users"></i>
+            <span>Leaders</span>
+        </a>
+        <a href="chat.html" class="bottom-nav-item">
+            <i class="fas fa-comments"></i>
+            <span>Chat</span>
+        </a>
+        <a href="reports.html" class="bottom-nav-item active">
+            <i class="fas fa-file-alt"></i>
+            <span>Reports</span>
+        </a>
+        <a href="profile.html" class="bottom-nav-item">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- JavaScript -->
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/reports.js"></script>
+    <script src="assets/js/auth.js"></script>
+</body>
+</html>

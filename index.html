@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubwiyunge - Community Feedback Platform</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="brand">
+                    <img src="assets/images/logo.svg" alt="Ubwiyunge" class="brand-logo">
+                    <span class="brand-text">Ubwiyunge</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="header-btn" id="notificationsBtn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="user-menu">
+                    <button class="user-avatar" id="userMenuBtn">
+                        <img src="assets/images/default-avatar.svg" alt="User Avatar" class="avatar-img">
+                    </button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <div class="dropdown-header">
+                            <div class="dropdown-avatar">
+                                <img src="assets/images/default-avatar.svg" alt="User Avatar" class="dropdown-avatar-img">
+                            </div>
+                            <div class="dropdown-user-info">
+                                <span class="dropdown-username">John Doe</span>
+                                <span class="dropdown-email">john.doe@example.com</span>
+                            </div>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="profile.html" class="dropdown-link">
+                                    <i class="fas fa-user"></i>
+                                    <span>Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="dropdown-link" onclick="handleLogout()">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span>Sign Out</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link active">
+                        <i class="fas fa-chart-pie nav-icon"></i>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="leaders.html" class="nav-link">
+                        <i class="fas fa-users nav-icon"></i>
+                        <span class="nav-text">Leaders</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="chat.html" class="nav-link">
+                        <i class="fas fa-comments nav-icon"></i>
+                        <span class="nav-text">Chat</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="reports.html" class="nav-link">
+                        <i class="fas fa-file-alt nav-icon"></i>
+                        <span class="nav-text">Reports</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="profile.html" class="nav-link">
+                        <i class="fas fa-user nav-icon"></i>
+                        <span class="nav-text">Profile</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Page -->
+        <section class="page active" id="dashboard-page">
+            <div class="page-header">
+                <h1 class="page-title">Dashboard</h1>
+                <p class="page-subtitle">Overview of community feedback and activities</p>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #FFB800;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" id="pendingIssues">12</h3>
+                        <p class="stat-label">Pending Cases</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #0066CC;">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" id="inProgressIssues">5</h3>
+                        <p class="stat-label">In Progress</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #00DD55;">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" id="resolvedIssues">45</h3>
+                        <p class="stat-label">Resolved</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #FF8800;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" id="totalLeaders">8</h3>
+                        <p class="stat-label">Active Leaders</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Cases -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Recent Cases</h2>
+                    <button class="btn btn-secondary" onclick="window.location.href='reports.html'">View All</button>
+                </div>
+                <div class="cases-list" id="recentCases">
+                    <!-- Cases will be loaded here -->
+                    <div class="case-card">
+                        <div class="case-status pending"></div>
+                        <div class="case-content">
+                            <h4 class="case-title">Road Repair Needed</h4>
+                            <p class="case-description">Potholes on KN 15 Ave need urgent attention...</p>
+                            <div class="case-meta">
+                                <span class="case-date">2 days ago</span>
+                                <span class="case-location">Gasabo, Kacyiru</span>
+                            </div>
+                        </div>
+                        <div class="case-actions">
+                            <button class="btn-icon" onclick="window.app.showCaseDetails('sample-1')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Quick Actions</h2>
+                </div>
+                <div class="quick-actions">
+                    <button class="action-btn primary" id="reportIssueBtn">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Report Issue</span>
+                    </button>
+                    <button class="action-btn secondary" id="findLeaderBtn">
+                        <i class="fas fa-search"></i>
+                        <span>Find Leader</span>
+                    </button>
+                    <button class="action-btn tertiary" id="startChatBtn">
+                        <i class="fas fa-comments"></i>
+                        <span>Start Chat</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="bottom-nav-item active">
+            <i class="fas fa-chart-pie"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="leaders.html" class="bottom-nav-item">
+            <i class="fas fa-users"></i>
+            <span>Leaders</span>
+        </a>
+        <a href="chat.html" class="bottom-nav-item">
+            <i class="fas fa-comments"></i>
+            <span>Chat</span>
+        </a>
+        <a href="reports.html" class="bottom-nav-item">
+            <i class="fas fa-file-alt"></i>
+            <span>Reports</span>
+        </a>
+        <a href="profile.html" class="bottom-nav-item">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Report Issue Modal -->
+    <div id="reportIssueModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Report an Issue</h2>
+                <button class="modal-close" onclick="window.app.hideReportIssueModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="reportIssueForm" class="modal-body">
+                <div class="form-group">
+                    <label for="issueTitle">Issue Title *</label>
+                    <input type="text" id="issueTitle" name="issueTitle" required placeholder="Brief description of the issue">
+                </div>
+                
+                <div class="form-group">
+                    <label for="issueCategory">Category *</label>
+                    <select id="issueCategory" name="issueCategory" required>
+                        <option value="">Select a category</option>
+                        <option value="infrastructure">Infrastructure (Roads, Water, Electricity)</option>
+                        <option value="health">Health Services</option>
+                        <option value="education">Education</option>
+                        <option value="security">Security & Safety</option>
+                        <option value="environment">Environment & Sanitation</option>
+                        <option value="transport">Public Transport</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="issueDescription">Detailed Description *</label>
+                    <textarea id="issueDescription" name="issueDescription" required rows="4" placeholder="Provide a detailed description of the issue..."></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="issueDistrict">District *</label>
+                        <select id="issueDistrict" name="issueDistrict" required>
+                            <option value="">Select district</option>
+                            <option value="gasabo">Gasabo</option>
+                            <option value="kicukiro">Kicukiro</option>
+                            <option value="nyarugenge">Nyarugenge</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="issueSector">Sector *</label>
+                        <select id="issueSector" name="issueSector" required>
+                            <option value="">Select sector</option>
+                            <option value="kimironko">Kimironko</option>
+                            <option value="kacyiru">Kacyiru</option>
+                            <option value="remera">Remera</option>
+                            <option value="gatenga">Gatenga</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="specificLocation">Specific Location</label>
+                    <input type="text" id="specificLocation" name="specificLocation" placeholder="e.g., KN 15 Ave, near Nakumatt">
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="window.app.hideReportIssueModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Submit Issue
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script>
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait a bit for auth.js to load, then check authentication
+            setTimeout(function() {
+                const userData = localStorage.getItem('currentUser');
+                const authStatus = localStorage.getItem('isAuthenticated');
+                
+                if (!userData || authStatus !== 'true') {
+                    // Redirect to login page if not authenticated
+                    window.location.href = 'login.html';
+                }
+            }, 100);
+        });
+    </script>
+</body>
+</html>
