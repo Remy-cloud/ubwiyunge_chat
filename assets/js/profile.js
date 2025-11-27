@@ -37,9 +37,8 @@ class ProfileManager {
             }
         }
         
-        // If no saved user, redirect to login
-        console.warn('No authenticated user found, redirecting to login');
-        window.location.href = 'login.html';
+        // If no saved user, return null (auth.js handles redirect)
+        console.warn('No authenticated user found');
         return null;
     }
 
