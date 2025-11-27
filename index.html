@@ -303,20 +303,5 @@
     <!-- JavaScript -->
     <script src="assets/js/app.js"></script>
     <script src="assets/js/auth.js"></script>
-    <script>
-        // Check authentication on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            // Wait a bit for auth.js to load, then check authentication
-            setTimeout(function() {
-                const userData = localStorage.getItem('currentUser');
-                const authStatus = localStorage.getItem('isAuthenticated');
-                
-                if (!userData || authStatus !== 'true') {
-                    // Redirect to login page if not authenticated
-                    window.location.href = 'login.html';
-                }
-            }, 100);
-        });
-    </script>
 </body>
 </html>
